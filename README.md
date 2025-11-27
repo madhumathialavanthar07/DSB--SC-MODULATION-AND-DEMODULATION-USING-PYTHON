@@ -27,9 +27,39 @@ __Procedure__:
 5) (Optional) Add noise
 6) Coherent demodulation (multiply by synchronized carrier)
 7) Low-pass filter to recover message
+Program:
+import numpy as np
+import matplotlib.pyplot as plt
+Ac = 2
+fc = 7000
+Am = 5
+fm = 700
+fs = 70000
+t = np.arange(0, 2/fm, 1/fs)
+Wm = 2 * np.pi * fm
+Wc = 2 * np.pi * fc
+Em = Am * np.sin(Wm * t)
+Ec = Ac * np.sin(Wc * t)
+Edsbsc = ((Am / 2) * np.cos((Wc - Wm) * t)) - ((Am / 2) * np.cos((Wc + Wm) * t))
+plt.figure(figsize=(10, 6))
+plt.subplot(3, 1, 1)
+plt.plot(t, Em)
+plt.grid()
+plt.subplot(3, 1, 2)
+plt.plot(t, Ec)
+
+plt.grid()
+plt.subplot(3, 1, 3)
+plt.plot(t, Edsbsc)
+plt.grid()
+plt.tight_layout()
+plt.show()
 
    __Tabulation__:
+![WhatsApp Image 2025-11-23 at 23 35 54_ae5c1654](https://github.com/user-attachments/assets/bb57024d-32d2-4aaf-b24a-a8e2f1de66bd)
 
    __Output__:
+![WhatsApp Image 2025-11-23 at 23 30 56_9919d16a](https://github.com/user-attachments/assets/56223666-1a44-4565-8d66-2b2dda0ad335)
 
    __Result__:
+   Thus,the double side band of modulation and demodulation using python is verified successfully.
